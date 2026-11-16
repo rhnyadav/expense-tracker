@@ -1,0 +1,10 @@
+{
+  "name": "Expense Tracker",
+  "short_name": "Expenses",
+  "description": "Simple personal expense and received amount tracker",
+  "start_url": "./Index.html",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#111111",
+  "orientation": "portrait"
+}
