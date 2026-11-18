@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -35,240 +35,492 @@
   <div class="app">
 
 
-    <!-- Header -->
+    <!-- Home Tab -->
 
-    <header class="header">
-
-      <div class="logo">
-        💰
-      </div>
-
-      <div>
-
-        <h1>
-          Expense Tracker
-        </h1>
-
-        <p>
-          Track your daily expenses
-        </p>
-
-      </div>
-
-    </header>
+    <main id="homeTab" class="tab-content active-tab">
 
 
-    <!-- Add Transaction -->
+      <!-- Header -->
 
-    <section class="card">
+      <header class="header">
 
-      <h2>
-        Add Transaction
-      </h2>
+        <div class="logo">
+          💰
+        </div>
+
+        <div>
+
+          <h1>
+            Expense Tracker
+          </h1>
+
+          <p>
+            Track your daily expenses
+          </p>
+
+        </div>
+
+      </header>
 
 
-      <form id="expenseForm">
+      <!-- Summary -->
+
+      <section class="summary">
 
 
-        <!-- Item Name -->
+        <div class="summary-card">
 
-        <div class="field">
+          <p>
+            Total Expense
+          </p>
 
-          <label for="item">
-            Item Name
-          </label>
+          <h2>
+            ₹<span id="totalExpense">0</span>
+          </h2>
 
-          <input
-            type="text"
-            id="item"
-            placeholder="Petrol, Salary, Lunch..."
-            autocomplete="off"
-            required
+        </div>
+
+
+        <div class="summary-card received-card">
+
+          <p>
+            Total Received
+          </p>
+
+          <h2>
+            ₹<span id="totalReceived">0</span>
+          </h2>
+
+        </div>
+
+
+        <div class="summary-card net-card">
+
+          <p>
+            Net Balance
+          </p>
+
+          <h2>
+            ₹<span id="netExpense">0</span>
+          </h2>
+
+        </div>
+
+
+      </section>
+
+
+      <!-- Transactions -->
+
+      <section class="card">
+
+
+        <div class="section-header">
+
+          <h2>
+            Transactions
+          </h2>
+
+
+          <button
+            type="button"
+            id="clearAll"
+            class="clear-btn"
           >
+            Clear All
+          </button>
 
         </div>
 
 
-        <!-- Expense Amount -->
+        <div id="expenseList">
 
-        <div class="field">
+          <p class="empty">
+            No transactions yet.
+          </p>
 
-          <label for="amount">
-            Expense Amount
-          </label>
+        </div>
 
-          <input
-            type="number"
-            id="amount"
-            placeholder="Enter expense amount"
-            min="0"
-            inputmode="decimal"
+
+      </section>
+
+
+    </main>
+
+
+    <!-- Add Expense Tab -->
+
+    <main
+      id="addExpenseTab"
+      class="tab-content"
+    >
+
+
+      <!-- Header -->
+
+      <header class="header">
+
+        <div class="logo">
+          💰
+        </div>
+
+        <div>
+
+          <h1>
+            Add Expense
+          </h1>
+
+          <p>
+            Add a new transaction
+          </p>
+
+        </div>
+
+      </header>
+
+
+      <!-- Add Transaction -->
+
+      <section class="card">
+
+        <h2>
+          Add Transaction
+        </h2>
+
+
+        <form id="expenseForm">
+
+
+          <!-- Item Name -->
+
+          <div class="field">
+
+            <label for="item">
+              Item Name
+            </label>
+
+            <input
+              type="text"
+              id="item"
+              placeholder="Petrol, Salary, Lunch..."
+              autocomplete="off"
+              required
+            >
+
+          </div>
+
+
+          <!-- Expense Amount -->
+
+          <div class="field">
+
+            <label for="amount">
+              Expense Amount
+            </label>
+
+            <input
+              type="number"
+              id="amount"
+              placeholder="Enter expense amount"
+              min="0"
+              inputmode="decimal"
+            >
+
+          </div>
+
+
+          <!-- Received Amount -->
+
+          <div class="field">
+
+            <label for="receivedAmount">
+              Received Amount
+            </label>
+
+            <input
+              type="number"
+              id="receivedAmount"
+              placeholder="Enter received amount"
+              min="0"
+              inputmode="decimal"
+            >
+
+          </div>
+
+
+          <!-- Category -->
+
+          <div class="field">
+
+            <label for="category">
+              Category
+            </label>
+
+            <select id="category">
+
+              <option value="Food">
+                Food
+              </option>
+
+              <option value="Travel">
+                Travel
+              </option>
+
+              <option value="Shopping">
+                Shopping
+              </option>
+
+              <option value="Bills">
+                Bills
+              </option>
+
+              <option value="Recharge">
+                Recharge
+              </option>
+
+              <option value="Salary">
+                Salary
+              </option>
+
+              <option value="Income">
+                Income
+              </option>
+
+              <option value="Other">
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Save -->
+
+          <button
+            type="submit"
+            class="save-btn"
           >
-
-        </div>
-
-
-        <!-- Received Amount -->
-
-        <div class="field">
-
-          <label for="receivedAmount">
-            Received Amount
-          </label>
-
-          <input
-            type="number"
-            id="receivedAmount"
-            placeholder="Enter received amount"
-            min="0"
-            inputmode="decimal"
-          >
-
-        </div>
+            Save Transaction
+          </button>
 
 
-        <!-- Category -->
+        </form>
 
-        <div class="field">
-
-          <label for="category">
-            Category
-          </label>
-
-          <select id="category">
-
-            <option value="Food">
-              Food
-            </option>
-
-            <option value="Travel">
-              Travel
-            </option>
-
-            <option value="Shopping">
-              Shopping
-            </option>
-
-            <option value="Bills">
-              Bills
-            </option>
-
-            <option value="Recharge">
-              Recharge
-            </option>
-
-            <option value="Salary">
-              Salary
-            </option>
-
-            <option value="Income">
-              Income
-            </option>
-
-            <option value="Other">
-              Other
-            </option>
-
-          </select>
-
-        </div>
+      </section>
 
 
-        <!-- Save -->
-
-        <button
-          type="submit"
-          class="save-btn"
-        >
-          Save Transaction
-        </button>
+    </main>
 
 
-      </form>
+    <!-- Settings Tab -->
 
-    </section>
-
-
-    <!-- Summary -->
-
-    <section class="summary">
+<main
+  id="settingsTab"
+  class="tab-content"
+>
 
 
-      <div class="summary-card">
+  <!-- Header -->
+
+  <header class="header">
+
+    <div class="logo">⚙</div>
+
+    <div>
+
+      <h1>
+        Settings
+      </h1>
+
+      <p>
+        Manage your app
+      </p>
+
+    </div>
+
+  </header>
+
+
+  <!-- Settings -->
+
+  <section class="card settings-card">
+
+
+    <!-- About -->
+
+    <div class="setting-item">
+
+      <div class="setting-info">
+
+        <strong>
+          About
+        </strong>
 
         <p>
-          Total Expense
+          Simple and easy expense tracking app.
         </p>
-
-        <h2>
-          ₹<span id="totalExpense">0</span>
-        </h2>
 
       </div>
 
+    </div>
 
-      <div class="summary-card received-card">
+
+    <!-- Version -->
+
+    <div class="setting-item">
+
+      <div class="setting-info">
+
+        <strong>
+          Version
+        </strong>
 
         <p>
-          Total Received
+          v1.0.0
         </p>
-
-        <h2>
-          ₹<span id="totalReceived">0</span>
-        </h2>
 
       </div>
 
+    </div>
 
-      <div class="summary-card net-card">
+
+    <!-- Created By -->
+
+    <div class="setting-item">
+
+      <div class="setting-info">
+
+        <strong>
+          Created by
+        </strong>
 
         <p>
-          Net Balance
-        </p>
-
-        <h2>
-          ₹<span id="netExpense">0</span>
-        </h2>
-
-      </div>
-
-
-    </section>
-
-
-    <!-- Transactions -->
-
-    <section class="card">
-
-
-      <div class="section-header">
-
-        <h2>
-          Transactions
-        </h2>
-
-
-        <button
-          type="button"
-          id="clearAll"
-          class="clear-btn"
-        >
-          Clear All
-        </button>
-
-      </div>
-
-
-      <div id="expenseList">
-
-        <p class="empty">
-          No transactions yet.
+          AbNextOfficial
         </p>
 
       </div>
 
+    </div>
 
-    </section>
+
+    <!-- Instagram -->
+
+    <div class="setting-item">
+
+      <div class="setting-info">
+
+        <strong>
+          Follow Instagram
+        </strong>
+
+        <p>
+          Follow AbNextOfficial on Instagram
+        </p>
+
+      </div>
+
+      <a
+        class="setting-action"
+        href="https://www.instagram.com/abnextofficial/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Follow
+      </a>
+
+    </div>
+
+
+    <!-- Export -->
+
+    <div class="setting-item">
+
+      <div class="setting-info">
+
+        <strong>
+          Export Expenses
+        </strong>
+
+        <p>
+          Download your transactions as an Excel file.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        id="exportExpenses"
+        class="setting-action"
+      >
+        Export Excel
+      </button>
+
+    </div>
+
+
+  </section>
+
+
+</main>
+
+<!-- Bottom Navigation -->
+
+    <nav class="bottom-nav">
+
+
+      <button
+        type="button"
+        class="nav-btn active"
+        data-tab="homeTab"
+      >
+
+        <span class="nav-icon">
+          🏠
+        </span>
+
+        <span>
+          Home
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="nav-btn"
+        data-tab="addExpenseTab"
+      >
+
+        <span class="nav-icon">
+          ➕
+        </span>
+
+        <span>
+          Add Expense
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="nav-btn"
+        data-tab="settingsTab"
+      >
+
+        <span class="nav-icon">
+          ⚙
+        </span>
+
+        <span>
+          Settings
+        </span>
+
+      </button>
+
+
+    </nav>
 
 
   </div>
@@ -276,6 +528,7 @@
 
   <!-- Main JavaScript -->
 
+  <script src="xlsx.full.min.js"></script>
   <script src="App.js"></script>
 
 
@@ -311,3 +564,11 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+

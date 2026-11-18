@@ -1,7 +1,107 @@
-document.addEventListener(
+﻿document.addEventListener(
   "DOMContentLoaded",
   function () {
 
+
+    /*
+     * Tab Navigation
+     */
+
+    const navButtons =
+      document.querySelectorAll(
+        ".nav-btn"
+      );
+
+
+    const tabContents =
+      document.querySelectorAll(
+        ".tab-content"
+      );
+
+
+    navButtons.forEach(
+      function (button) {
+
+        button.addEventListener(
+          "click",
+          function () {
+
+            const targetTab =
+              button.dataset.tab;
+
+
+            /*
+             * Hide all tabs
+             */
+
+            tabContents.forEach(
+              function (tab) {
+
+                tab.classList.remove(
+                  "active-tab"
+                );
+
+              }
+            );
+
+
+            /*
+             * Remove active
+             * from all buttons
+             */
+
+            navButtons.forEach(
+              function (navButton) {
+
+                navButton.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            /*
+             * Show selected tab
+             */
+
+            const selectedTab =
+              document.getElementById(
+                targetTab
+              );
+
+
+            if (
+              selectedTab
+            ) {
+
+              selectedTab.classList.add(
+                "active-tab"
+              );
+
+            }
+
+
+            /*
+             * Activate selected
+             * navigation button
+             */
+
+            button.classList.add(
+              "active"
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+
+    /*
+     * Existing Expense Tracker
+     */
 
     const expenseForm =
       document.getElementById(
@@ -58,7 +158,9 @@ document.addEventListener(
       if (saved) {
 
         const parsed =
-          JSON.parse(saved);
+          JSON.parse(
+            saved
+          );
 
 
         if (
@@ -282,10 +384,13 @@ document.addEventListener(
             category,
 
           date:
-            new Date()
-              .toLocaleDateString(
-                "en-IN"
-              )
+            new Date().toLocaleString(
+              "en-IN",
+              {
+                dateStyle: "short",
+                timeStyle: "short"
+              }
+            )
 
         };
 
@@ -329,6 +434,60 @@ document.addEventListener(
 
 
         itemInput.focus();
+
+
+        /*
+         * Go back to Home
+         */
+
+        const homeTab =
+          document.getElementById(
+            "homeTab"
+          );
+
+
+        const addExpenseTab =
+          document.getElementById(
+            "addExpenseTab"
+          );
+
+
+        if (
+          homeTab &&
+          addExpenseTab
+        ) {
+
+          addExpenseTab.classList.remove(
+            "active-tab"
+          );
+
+          homeTab.classList.add(
+            "active-tab"
+          );
+
+
+          navButtons.forEach(
+            function (button) {
+
+              button.classList.remove(
+                "active"
+              );
+
+              if (
+                button.dataset.tab ===
+                "homeTab"
+              ) {
+
+                button.classList.add(
+                  "active"
+                );
+
+              }
+
+            }
+          );
+
+        }
 
       }
     );
@@ -413,8 +572,8 @@ document.addEventListener(
 
 
           const netAmount =
-            expenseAmount -
-            receivedAmount;
+            receivedAmount -
+            expenseAmount;
 
 
 
@@ -517,8 +676,8 @@ document.addEventListener(
        */
 
       const netBalance =
-        totalExpense -
-        totalReceived;
+        totalReceived -
+        totalExpense;
 
 
 
@@ -642,6 +801,107 @@ document.addEventListener(
 
 
     /*
+     * Export expenses to Excel
+     */
+
+    const exportExpensesButton =
+      document.getElementById(
+        "exportExpenses"
+      );
+
+
+    if (exportExpensesButton) {
+
+      exportExpensesButton.addEventListener(
+        "click",
+        function () {
+
+          if (expenses.length === 0) {
+
+            alert(
+              "Export karne ke liye koi transaction nahi hai."
+            );
+
+            return;
+
+          }
+
+
+          const exportData =
+            expenses.map(
+              function (expense) {
+
+                const expenseAmount =
+                  Number(
+                    expense.amount
+                  ) || 0;
+
+
+                const receivedAmount =
+                  Number(
+                    expense.receivedAmount
+                  ) || 0;
+
+
+                const netBalance =
+                  receivedAmount -
+                  expenseAmount;
+
+
+                return {
+
+                  Date:
+                    expense.date || new Date().toLocaleString("en-IN", { dateStyle: "short", timeStyle: "short" }),
+
+                  Item:
+                    expense.item || "",
+
+                  Category:
+                    expense.category || "Other",
+
+                  Expense:
+                    expenseAmount,
+
+                  Received:
+                    receivedAmount,
+
+                  "Net Balance":
+                    netBalance
+
+                };
+
+              }
+            );
+
+
+          const worksheet =
+            XLSX.utils.json_to_sheet(
+              exportData
+            );
+
+
+          const workbook =
+            XLSX.utils.book_new();
+
+
+          XLSX.utils.book_append_sheet(
+            workbook,
+            worksheet,
+            "Expenses"
+          );
+
+
+          XLSX.writeFile(
+            workbook,
+            "Expense-Tracker.xlsx"
+          );
+
+        }
+      );
+
+    }
+
+    /*
      * Initial render
      */
 
@@ -649,3 +909,10 @@ document.addEventListener(
 
   }
 );
+
+
+
+
+
+
+

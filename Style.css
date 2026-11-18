@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -16,6 +16,8 @@ body {
   color: #222;
 
   min-height: 100vh;
+
+  padding-bottom: 82px;
 }
 
 
@@ -29,7 +31,19 @@ body {
   padding:
     24px
     16px
-    50px;
+    30px;
+}
+
+
+/* Tabs */
+
+.tab-content {
+  display: none;
+}
+
+
+.active-tab {
+  display: block;
 }
 
 
@@ -340,6 +354,112 @@ select:focus {
 }
 
 
+/* Settings */
+
+.setting-row {
+  padding: 4px 0;
+}
+
+
+.setting-row strong {
+  display: block;
+
+  font-size: 16px;
+}
+
+
+.setting-row p {
+  color: #777;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  margin-top: 7px;
+}
+
+
+/* Bottom Navigation */
+
+.bottom-nav {
+  position: fixed;
+
+  left: 50%;
+
+  bottom: 0;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+
+  max-width: 520px;
+
+  background: #fff;
+
+  border-top:
+    1px solid #e9e9e9;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  padding:
+    8px
+    10px
+    calc(8px + env(safe-area-inset-bottom));
+
+  z-index: 1000;
+
+  box-shadow:
+    0 -5px 20px
+    rgba(0, 0, 0, 0.05);
+}
+
+
+.nav-btn {
+  border: none;
+
+  background: transparent;
+
+  color: #777;
+
+  padding: 7px 4px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 3px;
+}
+
+
+.nav-btn.active {
+  background: transparent;
+
+  color: #111;
+}
+
+
+.nav-icon {
+  font-size: 20px;
+
+  line-height: 1;
+}
+
+
 /* Mobile */
 
 @media (max-width: 430px) {
@@ -356,4 +476,109 @@ select:focus {
     font-size: 28px;
   }
 
+}
+
+/* Settings */
+
+.settings-card {
+  padding: 20px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.setting-item:first-child {
+  padding-top: 4px;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+
+.setting-info {
+  min-width: 0;
+}
+
+.setting-info strong {
+  display: block;
+  font-size: 16px;
+  color: #222;
+}
+
+.setting-info p {
+  color: #777;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+.setting-action {
+  flex-shrink: 0;
+  border: none;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  padding: 9px 13px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.setting-action:active {
+  transform: scale(0.98);
+}
+
+
+
+/* Remove active tab box */
+
+.bottom-nav .nav-btn.active {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  color: #111 !important;
+}
+
+
+
+/* Bottom Settings Gear */
+
+.bottom-gear-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.bottom-gear-icon::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border: 2px solid #222;
+  border-radius: 50%;
+}
+
+.bottom-gear-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+  background: #222;
+  border-radius: 3px;
 }
